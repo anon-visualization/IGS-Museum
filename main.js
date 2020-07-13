@@ -5,7 +5,7 @@ IGS software was originally developed by Ben Rydal Shapiro at Vanderbilt Univers
 */
 
 // High Res or Low Res Images: lowImages/ or images/
-var imageFileName = "images/";
+var imageFileName;
 
 // Object Arrays
 var mapConversation = [],
@@ -102,8 +102,10 @@ function talkCurationZoom(walkway, bluegrass, rotunda) {
 
 function setup() {
 	createCanvas(windowWidth, windowHeight);
-	frameRate(20);
-	positionButtons();
+	// frameRate(20);
+    if (displayDensity() >= 1) imageFileName = "images/"; // set image resolution depending on displayDensity
+    else imageFileName = "lowImages/"; // low density displays
+    positionButtons();
 	loadBaseImages();
 	loadDataZoom();
 	loadDataConversation();
