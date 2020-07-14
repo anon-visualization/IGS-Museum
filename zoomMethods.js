@@ -43,7 +43,7 @@ function DrawZoom() {
 		if (movement) drawMovementZoom();
 		else if (talk) {
 			drawTalkZoom();
-			if (!showing) conversationHighlight(); // don't draw convo when video is showing
+			conversationHighlight(); // don't draw convo when video is showing
 			if (!locked) drawConversationZoom();
 		} else if (curation) drawCurationZoom();
 	}

@@ -89,7 +89,7 @@ function familyHighlight(start, end) {
 }
 
 
-// selects space that is true, makes others false, and applies it to group. Sets timeline value for video.
+// selects space that is true, makes others false, and applies it to group
 function spaceSelect(space) {
     var i;
     displaySpace = space;
@@ -116,7 +116,6 @@ function spaceSelect(space) {
 function individualDisplay(number) {
     if (mapMovement[number].show == true) mapMovement[number].show = false;
     else if (mapMovement[number].show == false) mapMovement[number].show = true;
-    if (showing) individualVideo(number);
 }
 
 // sets individualButtonX for use in drawing individualDisplay Buttons and mouseOver

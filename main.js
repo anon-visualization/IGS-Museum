@@ -41,8 +41,7 @@ var conversationButtonSize = 7,
 // toggle buttons
 var locked = false,
 	zoomView = true,
-	grayScaleToggle = true,
-	showing = false;
+	grayScaleToggle = true;
 
 var conversationAudioNumber = -1; // Constant for preventing auido repeating
 
@@ -126,7 +125,7 @@ function draw() {
 		drawingSurface.draw();
 		fill(125);
 		textSize(18);
-		text("Space (s), Video (v), Animation (a)", width / 30, height / 1.075);
+		text("Space (s), Animation (a)", width / 30, height / 1.075);
 	} else if (!zoomView) {
 		drawingSurface = new DrawSmallMultiple();
 		drawingSurface.draw();
