@@ -53,7 +53,6 @@ function loadDataZoom() {
     }
 }
 
-
 function loadDataConversation() {
     var i;
     var conversation;
@@ -167,4 +166,3 @@ function positionButtons() {
     timelineStartBluegrass = width / 2.83;
     timelineStartRotunda = width / 1.81;
 }
-

@@ -7,18 +7,18 @@ IGS software was originally developed by Ben Rydal Shapiro at Vanderbilt Univers
 // High Res or Low Res Images: lowImages/ or images/
 var imageFileName;
 
-// Object Arrays
-var mapConversation = [],
-	mapMovement = [],
+// Array Lengths
+var individualLength = 15,
+	conversationLength = 106;
+
+// Object holders
+var mapConversation = []; // conversationLength
+var mapMovement = [], // individualLength for all
 	mapTalk = [],
 	mapCuration = [],
 	mapZoomMovement = [],
 	mapZoomTalk = [],
 	mapZoomCuration = [];
-
-// Array Lengths
-var individualLength = 15,
-	conversationLength = 106;
 
 // Base Images
 var baseGrid, baseGrid_2, baseGrid_3, grayScale, allConversationBoxes, grid_Walkway, grid_Bluegrass, grid_Rotunda, plan_Walkway, plan_Bluegrass, plan_Rotunda, gridZoom, conversationBoxes_00, conversationBoxes_01, conversationBoxes_02, conversationBoxes_03, conversationBoxes_10, conversationBoxes_11, conversationBoxes_12, conversationBoxes_13, conversationBoxes_20, conversationBoxes_21, conversationBoxes_22, grayScale_00, grayScale_01, grayScale_02, grayScale_03, grayScale_10, grayScale_11, grayScale_12, grayScale_13, grayScale_20, grayScale_21, grayScale_22, walkwayImage, bluegrassImage, rotundaImage;
