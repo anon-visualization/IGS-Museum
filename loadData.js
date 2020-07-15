@@ -1,6 +1,6 @@
     function loadBlankDataArrays() {
         var noData = -1;
-        var path = new movementPath(noData, true);
+        var path = new movementPath(noData, false);
         // load individual length arrays
         for (var i = 0; i < 15; i++) {
             mapMovement.push(path);

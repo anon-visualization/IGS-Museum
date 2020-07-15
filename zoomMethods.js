@@ -192,7 +192,6 @@ function DrawZoom() {
                     noFill();
 
                 } else {
-                    print("Hi");
                     loadDataConversation(i);
                 }
             } else {

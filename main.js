@@ -110,11 +110,13 @@ function setup() {
     createCanvas(windowWidth, windowHeight);
     frameRate(30);
     positionButtons();
+    displayFamily = 0;
+    displaySpace = 1; 
     // loads and displays initial family
-    zoomSelect(4); // use to highlight Bluegrass Family to start
-    familySelect(5, 8); // Removes BG family paths by calling this function used elsewhere in program
-    familyHighlight(0, 4);
-    spaceSelect(1);
+    //    zoomSelect(4); // use to highlight Bluegrass Family to start
+    //    familySelect(5, 8); // Removes BG family paths by calling this function used elsewhere in program
+    //    familyHighlight(0, 4);
+    //    spaceSelect(1);
 
 }
 

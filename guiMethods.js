@@ -112,10 +112,6 @@ function spaceSelect(space) {
     }
 }
 
-
-
-// individual display--if movement.show == false ** no data int - 1...load data all for that number, change no data int
-
 // toggles all indexes on or off
 function individualDisplay(number) {
     if (mapMovement[number].movement !== -1) { // if data has been loaded
@@ -124,6 +120,7 @@ function individualDisplay(number) {
     } else {
         loadDataZoom(number);
         loadDataSmallMultiple(number);
+        spaceSelect(displaySpace); // Necessary for proper dynamic loading
     }
 }
 
