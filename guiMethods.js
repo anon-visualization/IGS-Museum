@@ -112,10 +112,19 @@ function spaceSelect(space) {
     }
 }
 
+
+
+// individual display--if movement.show == false ** no data int - 1...load data all for that number, change no data int
+
 // toggles all indexes on or off
 function individualDisplay(number) {
-    if (mapMovement[number].show == true) mapMovement[number].show = false;
-    else if (mapMovement[number].show == false) mapMovement[number].show = true;
+    if (mapMovement[number].movement !== -1) { // if data has been loaded
+        if (mapMovement[number].show == true) mapMovement[number].show = false;
+        else if (mapMovement[number].show == false) mapMovement[number].show = true;
+    } else {
+        loadDataZoom(number);
+        loadDataSmallMultiple(number);
+    }
 }
 
 // sets individualButtonX for use in drawing individualDisplay Buttons and mouseOver
