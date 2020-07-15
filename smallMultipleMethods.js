@@ -14,8 +14,8 @@ function DrawSmallMultiple() {
     }
 
     // loop through conversation array and draw buttons and draw text if mouse is over button
-    function conversationDisplay() {  
-			var conversationButtonSpacing, j, distance;
+    function conversationDisplay() {
+        var conversationButtonSpacing, j, distance;
         stroke(0);
         strokeWeight(.25);
         noFill();
@@ -26,21 +26,25 @@ function DrawSmallMultiple() {
             }
             distance = dist(mouseX, mouseY, conversationButtonX + conversationButtonSpacing, conversationButtonY);
             if ((distance < conversationButtonSize / 2)) {
-                locked = true; // sets locked to true to only show one conversatio box back in draw
-                image(mapConversation[j].conversationBox, 0, 0, width, height);
-
-                // same as function zoom TEMP
-                if (j == conversationAudioNumber);
-                else {
-                    mapConversation[j].conversationAudio.play();
-                    conversationAudioNumber = j;
+                if (mapConversation[j] !== -1) { // if data has been loaded
+                    locked = true; // sets locked to true to only show one conversatio box back in draw
+                    image(mapConversation[j].conversationBox, 0, 0, width, height);
+                    // same as function zoom TEMP
+                    if (j == conversationAudioNumber);
+                    else {
+                        if (mapConversation[j].conversationAudio.isLoaded()) {
+                            mapConversation[j].conversationAudio.play();
+                            conversationAudioNumber = j;
+                        }
+                    }
+                    drawText(j);
+                    fill(0);
+                    ellipse(conversationButtonX + conversationButtonSpacing, conversationButtonY, conversationButtonSize, conversationButtonSize);
+                    conversationButtonSpacing += conversationButtonGap;
+                    noFill();
+                } else {
+                    loadDataConversation(j);
                 }
-
-                drawText(j);
-                fill(0);
-                ellipse(conversationButtonX + conversationButtonSpacing, conversationButtonY, conversationButtonSize, conversationButtonSize);
-                conversationButtonSpacing += conversationButtonGap;
-                noFill();
             } else {
                 ellipse(conversationButtonX + conversationButtonSpacing, conversationButtonY, conversationButtonSize, conversationButtonSize);
                 conversationButtonSpacing += conversationButtonGap;
@@ -100,9 +104,8 @@ function DrawSmallMultiple() {
         textBoxTop = mouseY - textLength * textLeading;
 
         fill(255, 180);
-        rect(mouseX - textBoxWidth/2 - textSpacing, textBoxTop - textLeading, textBoxWidth, textLength * textLeading + textSpacing);
+        rect(mouseX - textBoxWidth / 2 - textSpacing, textBoxTop - textLeading, textBoxWidth, textLength * textLeading + textSpacing);
         fill(0);
-        for (i = 0; i < textLength; i++) text(mapConversation[lines].conversationText[i], mouseX - textBoxWidth/2, (i * textLeading) + textBoxTop);
+        for (i = 0; i < textLength; i++) text(mapConversation[lines].conversationText[i], mouseX - textBoxWidth / 2, (i * textLeading) + textBoxTop);
     }
 }
-
