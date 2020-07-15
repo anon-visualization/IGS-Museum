@@ -9,39 +9,39 @@ var imageFileName;
 
 // Array Lengths
 var individualLength = 15,
-	conversationLength = 106;
+    conversationLength = 106;
 
 // Object holders
 var mapConversation = []; // conversationLength
 var mapMovement = [], // individualLength for all
-	mapTalk = [],
-	mapCuration = [],
-	mapZoomMovement = [],
-	mapZoomTalk = [],
-	mapZoomCuration = [];
+    mapTalk = [],
+    mapCuration = [],
+    mapZoomMovement = [],
+    mapZoomTalk = [],
+    mapZoomCuration = [];
 
 // Base Images
 var baseGrid, baseGrid_2, baseGrid_3, grayScale, allConversationBoxes, grid_Walkway, grid_Bluegrass, grid_Rotunda, plan_Walkway, plan_Bluegrass, plan_Rotunda, gridZoom, conversationBoxes_00, conversationBoxes_01, conversationBoxes_02, conversationBoxes_03, conversationBoxes_10, conversationBoxes_11, conversationBoxes_12, conversationBoxes_13, conversationBoxes_20, conversationBoxes_21, conversationBoxes_22, grayScale_00, grayScale_01, grayScale_02, grayScale_03, grayScale_10, grayScale_11, grayScale_12, grayScale_13, grayScale_20, grayScale_21, grayScale_22, walkwayImage, bluegrassImage, rotundaImage;
 
 // Modes: Movement, Talk, Curation
 var movement = true,
-	talk = false,
-	curation = false;
+    talk = false,
+    curation = false;
 
 // ********* GUI *********
 // Buttons
 var conversationButtonSize = 7,
-	conversationButtonSizeZoom = 14,
-	conversationButtonGap = 7,
-	conversationButtonGapZoom = 14,
-	zoomButtonSize = 50,
-	zoomExitButtonSize = 100,
-	mapButtonSize = 9;
+    conversationButtonSizeZoom = 14,
+    conversationButtonGap = 7,
+    conversationButtonGapZoom = 14,
+    zoomButtonSize = 50,
+    zoomExitButtonSize = 100,
+    mapButtonSize = 9;
 
 // toggle buttons
 var locked = false,
-	zoomView = true,
-	grayScaleToggle = true;
+    zoomView = true,
+    grayScaleToggle = true;
 
 var conversationAudioNumber = -1; // Constant for preventing auido repeating
 
@@ -65,75 +65,81 @@ var timelineStart, timelineEnd, timelineStartWalkway, timelineStartBluegrass, ti
 
 // animation variables and buttons
 var reveal = 0,
-	fillColor = 255,
-	showSpace = false,
-	animate = true,
-	fullScreenTransition = false;
+    fillColor = 255,
+    showSpace = false,
+    animate = true,
+    fullScreenTransition = false;
 
 // Classes
 function Conversation(convo, box, boxZoom, audio) {
-	this.conversationText = convo;
-	this.conversationBox = box;
-	this.conversationBoxZoom = boxZoom;
-	this.conversationAudio = audio;
+    this.conversationText = convo;
+    this.conversationBox = box;
+    this.conversationBoxZoom = boxZoom;
+    this.conversationAudio = audio;
 }
 
 function movementPath(movement, view) {
-	this.movement = movement;
-	this.show = view;
+    this.movement = movement;
+    this.show = view;
 }
 
 // Primary class to control GUI using movement
 function movementZoom(walkway, bluegrass, rotunda, selectWalkway, selectBluegrass, selectRotunda) {
-	this.movementWalkway = walkway;
-	this.movementBluegrass = bluegrass;
-	this.movementRotunda = rotunda;
-	this.selectWalkway = selectWalkway;
-	this.selectBluegrass = selectBluegrass;
-	this.selectRotunda = selectRotunda;
+    this.movementWalkway = walkway;
+    this.movementBluegrass = bluegrass;
+    this.movementRotunda = rotunda;
+    this.selectWalkway = selectWalkway;
+    this.selectBluegrass = selectBluegrass;
+    this.selectRotunda = selectRotunda;
 }
 
 function talkCurationZoom(walkway, bluegrass, rotunda) {
-	this.movementWalkway = walkway;
-	this.movementBluegrass = bluegrass;
-	this.movementRotunda = rotunda;
+    this.movementWalkway = walkway;
+    this.movementBluegrass = bluegrass;
+    this.movementRotunda = rotunda;
+}
+
+function preload() {
+    if (displayDensity() >= 1) imageFileName = "images/"; // set image resolution depending on displayDensity
+    else imageFileName = "lowImages/"; // low density displays
+    loadBaseImages();
+    loadBlankDataArrays();
 }
 
 function setup() {
-	createCanvas(windowWidth, windowHeight);
-	// frameRate(20);
-    if (displayDensity() >= 1) imageFileName = "images/"; // set image resolution depending on displayDensity
-    else imageFileName = "lowImages/"; // low density displays
+    createCanvas(windowWidth, windowHeight);
+    frameRate(30);
     positionButtons();
-	loadBaseImages();
-	loadDataZoom();
-	loadDataConversation();
-	loadDataSmallMultiple();
-	zoomSelect(4); // use to highlight Bluegrass Family to start program
-	familySelect(5, 8); // removes Bluegrass Family paths to start program
+    // loads and displays initial family
+    zoomSelect(4); // use to highlight Bluegrass Family to start
+    familySelect(5, 8); // Removes BG family paths by calling this function used elsewhere in program
+    familyHighlight(0, 4);
+    spaceSelect(1);
+
 }
+
 
 // sets drawing canvas, organizes drawing in 2 views (zoom or not zoom), sets animation
 function draw() {
-	var drawingSurface;
-	background(255);
-	locked = false; // resets locked
-	image(baseGrid, 0, 0, width, height);
-	drawIndividualDisplayButtons();
-	if (zoomView) {
-		drawingSurface = new DrawZoom();
-		drawingSurface.draw();
-		fill(125);
-		textSize(18);
-		text("Space (s), Animation (a)", width / 30, height / 1.075);
-	} else if (!zoomView) {
-		drawingSurface = new DrawSmallMultiple();
-		drawingSurface.draw();
-	}
-	setUpAnimation();
+    var drawingSurface;
+    background(255);
+    locked = false; // resets locked
+    image(baseGrid, 0, 0, width, height);
+    drawIndividualDisplayButtons();
+    if (zoomView) {
+        drawingSurface = new DrawZoom();
+        drawingSurface.draw();
+        fill(125);
+        textSize(18);
+        text("Space (s), Animation (a)", width / 30, height / 1.075);
+    } else if (!zoomView) {
+        drawingSurface = new DrawSmallMultiple();
+        drawingSurface.draw();
+    }
+    setUpAnimation();
 }
 
 function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
+    resizeCanvas(windowWidth, windowHeight);
     positionButtons();
 }
