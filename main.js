@@ -131,7 +131,7 @@ function draw() {
         drawingSurface.draw();
     }
     setUpAnimation();
-    setWelcomeScreen();
+    // setWelcomeScreen();
 }
 
 function windowResized() {
