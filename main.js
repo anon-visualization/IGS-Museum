@@ -107,7 +107,7 @@ function setup() {
     else imageFileName = "lowImages/"; // low density displays
     loadBlankDataArrays();
     loadBaseImages();
-    frameRate(30);
+    // frameRate(30);
     positionButtons();
     displayFamily = 0;
     displaySpace = 1;
@@ -131,7 +131,7 @@ function draw() {
         drawingSurface.draw();
     }
     setUpAnimation();
-    // setWelcomeScreen();
+    setWelcomeScreen();
 }
 
 function windowResized() {
