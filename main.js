@@ -4,7 +4,7 @@ CREDITS/LICENSE INFORMATION: This software is licensed under the GNU General Pub
 IGS software was originally developed by Ben Rydal Shapiro at Vanderbilt University as part of his dissertation titled Interaction Geography & the Learning Sciences. Copyright (C) 2018 Ben Rydal Shapiro, and contributers. To reference or read more about this work please see: https://etd.library.vanderbilt.edu/available/etd-03212018-140140/unrestricted/Shapiro_Dissertation.pdf
 */
 
-// High Res or Low Res Images: lowImages/ or images/
+// Selects high Res or low Res Images
 var imageFileName;
 
 // Array Lengths
@@ -21,7 +21,7 @@ var mapMovement = [], // individualLength for all
     mapZoomCuration = [];
 
 // Base Images
-var baseGrid, baseGrid_2, baseGrid_3, grayScale, allConversationBoxes, grid_Walkway, grid_Bluegrass, grid_Rotunda, plan_Walkway, plan_Bluegrass, plan_Rotunda, gridZoom, conversationBoxes_00, conversationBoxes_01, conversationBoxes_02, conversationBoxes_03, conversationBoxes_10, conversationBoxes_11, conversationBoxes_12, conversationBoxes_13, conversationBoxes_20, conversationBoxes_21, conversationBoxes_22, grayScale_00, grayScale_01, grayScale_02, grayScale_03, grayScale_10, grayScale_11, grayScale_12, grayScale_13, grayScale_20, grayScale_21, grayScale_22, walkwayImage, bluegrassImage, rotundaImage;
+var baseGrid, baseGrid_2, baseGrid_3, grayScale, allConversationBoxes, grid_Walkway, grid_Bluegrass, grid_Rotunda, plan_Walkway, plan_Bluegrass, plan_Rotunda, gridZoom, conversationBoxes_00, conversationBoxes_01, conversationBoxes_02, conversationBoxes_03, conversationBoxes_10, conversationBoxes_11, conversationBoxes_12, conversationBoxes_13, conversationBoxes_20, conversationBoxes_21, conversationBoxes_22, grayScale_00, grayScale_01, grayScale_02, grayScale_03, grayScale_10, grayScale_11, grayScale_12, grayScale_13, grayScale_20, grayScale_21, grayScale_22;
 
 // Modes: Movement, Talk, Curation
 var movement = true,
@@ -43,7 +43,10 @@ var locked = false,
     zoomView = true,
     grayScaleToggle = true;
 
-var conversationAudioNumber = -1; // Constant for preventing auido repeating
+var conversationAudioNumber = -1; // Constant for preventing audio repeating
+
+var welcome = true; // Controls welcome message/information on hover
+var welcomeScreen, welcomeAnimation = 0; // Controls fading for welcome screen
 
 // mode Button positions
 var yPosMapButton, xPosMapMovementButton, xPosMapTalkButton, xPosMapCurationButton, xPosMapCurationButtonEnd, mapButtonHeight, widthMapMovementButton, widthMapTalkButton, widthMapCurationButton, mapButtonSizeHeight;
@@ -66,7 +69,6 @@ var timelineStart, timelineEnd, timelineStartWalkway, timelineStartBluegrass, ti
 // animation variables and buttons
 var reveal = 0,
     fillColor = 255,
-    showSpace = false,
     animate = true,
     fullScreenTransition = false;
 
@@ -99,32 +101,22 @@ function talkCurationZoom(walkway, bluegrass, rotunda) {
     this.movementRotunda = rotunda;
 }
 
-function preload() {
-    if (displayDensity() >= 1) imageFileName = "images/"; // set image resolution depending on displayDensity
-    else imageFileName = "lowImages/"; // low density displays
-    loadBaseImages();
-    loadBlankDataArrays();
-}
-
 function setup() {
     createCanvas(windowWidth, windowHeight);
+    if (displayDensity() >= 1) imageFileName = "images/"; // set image resolution depending on displayDensity
+    else imageFileName = "lowImages/"; // low density displays
+    loadBlankDataArrays();
+    loadBaseImages();
     frameRate(30);
     positionButtons();
     displayFamily = 0;
-    displaySpace = 1; 
-    // loads and displays initial family
-    //    zoomSelect(4); // use to highlight Bluegrass Family to start
-    //    familySelect(5, 8); // Removes BG family paths by calling this function used elsewhere in program
-    //    familyHighlight(0, 4);
-    //    spaceSelect(1);
-
+    displaySpace = 1;
 }
-
 
 // sets drawing canvas, organizes drawing in 2 views (zoom or not zoom), sets animation
 function draw() {
-    var drawingSurface;
     background(255);
+    var drawingSurface;
     locked = false; // resets locked
     image(baseGrid, 0, 0, width, height);
     drawIndividualDisplayButtons();
@@ -133,15 +125,39 @@ function draw() {
         drawingSurface.draw();
         fill(125);
         textSize(18);
-        text("Space (s), Animation (a)", width / 30, height / 1.075);
+        text("Animation (a)", width / 30, height / 1.075);
     } else if (!zoomView) {
         drawingSurface = new DrawSmallMultiple();
         drawingSurface.draw();
     }
     setUpAnimation();
+    setWelcomeScreen();
 }
 
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
     positionButtons();
+}
+
+function setWelcomeScreen() {
+    // Determine fade in/out and send to draw welcome screen scaled to window 
+    if (welcome) {
+        if (welcomeAnimation < 230) welcomeAnimation += 10;
+        drawWelcomeScreen();
+    } else {
+        if (welcomeAnimation > 0) {
+            welcomeAnimation -= 10;
+            drawWelcomeScreen();
+        }
+    }
+}
+
+function drawWelcomeScreen() {
+    imageMode(CENTER);
+    tint(255, welcomeAnimation);
+    var imageRatio = welcomeScreen.width / welcomeScreen.height;
+    if (windowWidth * displayDensity() > welcomeScreen.width) image(welcomeScreen, width / 2, height / 2, welcomeScreen.width / 2, welcomeScreen.height / 2);
+    else image(welcomeScreen, windowWidth / 2, windowHeight / 2, windowWidth / imageRatio, windowHeight / imageRatio);
+    imageMode(CORNER);
+    noTint();
 }

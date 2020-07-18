@@ -17,28 +17,6 @@
         }
     }
 
-    //    function loadBlankDataArrays() {
-    //        var noData = -1;
-    //        var path = new movementPath(noData, true);
-    //        // load individual length arrays
-    //        for (var i = 0; i < 15; i++) {
-    //            mapMovement.push(path);
-    //            mapTalk.push(noData);
-    //            mapCuration.push(noData);
-    //            mapZoomMovement.push(noData);
-    //            mapZoomTalk.push(noData);
-    //            mapZoomCuration.push(noData);
-    //        }
-    //        // load conversation length array
-    //
-    //        var conversation = new Conversation(noData, noData, noData, noData);
-    //        for (var i = 0; i < 106; i++) {
-    //            mapConversation.push(conversation);
-    //
-    //        }
-    //    }
-
-
     function loadDataSmallMultiple(i) {
         var path;
         var block;
@@ -101,8 +79,6 @@
         baseGrid = loadImage(imageFileName + "baseGrid.png");
         baseGrid_2 = loadImage(imageFileName + "baseGrid_2.png");
         baseGrid_3 = loadImage(imageFileName + "baseGrid_3.png");
-        grayScale = loadImage(imageFileName + "grayScale.png");
-        allConversationBoxes = loadImage(imageFileName + "allConversationBoxes.png");
         grid_Walkway = loadImage(imageFileName + "grid_Walkway.png");
         grid_Bluegrass = loadImage(imageFileName + "grid_Bluegrass.png");
         grid_Rotunda = loadImage(imageFileName + "grid_Rotunda.png");
@@ -110,6 +86,8 @@
         plan_Walkway = loadImage(imageFileName + "plan_Walkway.png");
         plan_Bluegrass = loadImage(imageFileName + "plan_Bluegrass.png");
         plan_Rotunda = loadImage(imageFileName + "plan_Rotunda.png");
+        grayScale = loadImage(imageFileName + "grayScale.png");
+        allConversationBoxes = loadImage(imageFileName + "allConversationBoxes.png");
         conversationBoxes_00 = loadImage(imageFileName + "conversationBoxes_00.png");
         conversationBoxes_01 = loadImage(imageFileName + "conversationBoxes_01.png");
         conversationBoxes_02 = loadImage(imageFileName + "conversationBoxes_02.png");
@@ -132,9 +110,7 @@
         grayScale_20 = loadImage(imageFileName + "grayScale_20.png");
         grayScale_21 = loadImage(imageFileName + "grayScale_21.png");
         grayScale_22 = loadImage(imageFileName + "grayScale_22.png");
-        walkwayImage = loadImage(imageFileName + "walkwayImage.png");
-        bluegrassImage = loadImage(imageFileName + "bluegrassImage.png");
-        rotundaImage = loadImage(imageFileName + "rotundaImage.png");
+        welcomeScreen = loadImage(imageFileName + "welcomeScreen.png");
     }
 
     function positionButtons() {

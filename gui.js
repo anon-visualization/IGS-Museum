@@ -4,15 +4,12 @@ function keyPressed() {
         if (key == 'A' || key == 'a') {
             animate = !animate;
             reveal = 0;
-        } else if (key == 'S' || key == 's') {
-            showSpace = !showSpace;
-            fullScreenTransition = true;
-            resetTransition();
         }
     }
 }
 
 function mousePressed() {
+    if (welcome) welcome = false;
     overIndividualButton();
     overMapButton();
     if (zoomView) {

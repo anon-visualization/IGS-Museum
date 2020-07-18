@@ -159,14 +159,6 @@ function findSpace(space) {
 function setUpAnimation() {
     // animate and in zoom and reveal control transitionReveal
     if (animate && zoomView && reveal < width) transitionReveal(); // sends to transitionReveal
-
-    // if showSpace is true then show fullScreen image of space
-    if (showSpace) { // draws full screen space image
-        if (displaySpace == 0) image(walkwayImage, 0, 0, width, height);
-        else if (displaySpace == 1) image(bluegrassImage, 0, 0, width, height);
-        else if (displaySpace == 2) image(rotundaImage, 0, 0, width, height);
-    }
-
     //fillColor controls transition call
     if (fillColor > 0) transition();
 }

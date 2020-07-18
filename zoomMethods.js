@@ -201,41 +201,6 @@ function DrawZoom() {
         }
     }
 
-
-
-    //                //Either load data or play conversation
-    //            if ((distance < conversationButtonSizeZoom / 2)) {
-    //                if (mapConversation[i].conversationAudio !== -1) { // if data has been loaded
-    //                    locked = true;
-    //                    image(mapConversation[i].conversationBoxZoom, 0, 0, width, height); // Different than !zoom display
-    //                    if (i == conversationAudioNumber) {
-    //                        // prevents repeating audio if already playing or sets conversationAudioNumber to play audio
-    //                    } else {
-    //                        mapConversation[i].conversationAudio.play();
-    //                        conversationAudioNumber = i;
-    //                    }
-    //                    drawIndividualConversationText(i);
-    //                    fill(0);
-    //                    ellipse(conversationButtonX + conversationButtonSpacing, conversationButtonY, conversationButtonSizeZoom, conversationButtonSizeZoom);
-    //                    conversationButtonSpacing += conversationButtonGapZoom;
-    //                    noFill();
-    //
-    //                } else {
-    //                    // print("Hi");
-    //                    loadDataConversation(i);
-    //                }
-    //            } else {
-    //                ellipse(conversationButtonX + conversationButtonSpacing, conversationButtonY, conversationButtonSizeZoom, conversationButtonSizeZoom);
-    //                conversationButtonSpacing += conversationButtonGapZoom;
-    //            }
-
-
-
-
-
-
-
-
     // draws text when called (e.g. mouse is over conversationButton)
     function drawIndividualConversationText(lines) {
         var textLength, i, textBoxTop, textXPos, talkBubbleLine;
