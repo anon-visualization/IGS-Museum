@@ -1,18 +1,16 @@
-// Animation control
-function keyPressed() {
-    if (zoomView) {
-        if (key == 'A' || key == 'a') {
-            animate = !animate;
-            reveal = 0;
+function mousePressed() {
+    if (welcome) {
+        welcome = false;
+        if (intro) { // only runs once
+            individualDisplay(0);
+            individualDisplay(4);
+            intro = false;
         }
     }
-}
-
-function mousePressed() {
-    if (welcome) welcome = false;
     overIndividualButton();
     overMapButton();
     if (zoomView) {
+        overIntroButtons();
         overZoomFamilyButton();
         overZoomSpaceButton();
         overZoomExitButton();
@@ -20,6 +18,19 @@ function mousePressed() {
         reset();
         overZoomButton();
     }
+}
+
+function overIntroButtons() {
+    textSize(18);
+    var a = textWidth("Animation on/off  ");
+    var b = textWidth("  About  ");
+    var introButtonTop = introMsgButtonYPos - mapButtonSizeHeight;
+    var introButtonBottom = introMsgButtonYPos + mapButtonSizeHeight
+
+    if (overRect(introMsgButtonXPos, introButtonTop, introMsgButtonXPos + a, introButtonBottom)) {
+        animate = !animate;
+        reveal = 0;
+    } else if (overRect(introMsgButtonXPos + a, introButtonTop, introMsgButtonXPos + a + b, introButtonBottom)) welcome = !welcome;
 }
 
 function resetTransition() {

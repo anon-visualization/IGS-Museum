@@ -26,7 +26,7 @@ function DrawSmallMultiple() {
             }
             distance = dist(mouseX, mouseY, conversationButtonX + conversationButtonSpacing, conversationButtonY);
             if ((distance < conversationButtonSize / 2)) {
-                if (mapConversation[j] !== -1) { // if data has been loaded
+                if (mapConversation[j] !== -1 && mapConversation[j] !== undefined && mapConversation[j] !== null) { // if data has been loaded
                     locked = true; // sets locked to true to only show one conversatio box back in draw
                     image(mapConversation[j].conversationBox, 0, 0, width, height);
                     // same as function zoom TEMP

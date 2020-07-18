@@ -114,7 +114,7 @@ function spaceSelect(space) {
 
 // toggles all indexes on or off
 function individualDisplay(number) {
-    if (mapMovement[number].movement !== -1) { // if data has been loaded
+    if (mapMovement[number].movement !== -1 && mapMovement[number] !== undefined && mapMovement[number] !== null) { // if data has been loaded
         if (mapMovement[number].show == true) mapMovement[number].show = false;
         else if (mapMovement[number].show == false) mapMovement[number].show = true;
     } else {

@@ -44,9 +44,9 @@ var locked = false,
     grayScaleToggle = true;
 
 var conversationAudioNumber = -1; // Constant for preventing audio repeating
-
 var welcome = true; // Controls welcome message/information on hover
 var welcomeScreen, welcomeAnimation = 0; // Controls fading for welcome screen
+var font_PlayfairReg; // fonts
 
 // mode Button positions
 var yPosMapButton, xPosMapMovementButton, xPosMapTalkButton, xPosMapCurationButton, xPosMapCurationButtonEnd, mapButtonHeight, widthMapMovementButton, widthMapTalkButton, widthMapCurationButton, mapButtonSizeHeight;
@@ -58,13 +58,19 @@ var individualButtonGap, individualButtonSize, individualButtonY, individualButt
 var conversationButtonY, conversationButtonX, yPosWalkway, yPosBluegrass, yPosRotunda, xPosButtonBluegrass, xPosButtonGayle, xPosButtonBusiness, xPosButtonMom;
 
 // space, family, zoom button positions
-var displaySpace, displayFamily, zoomX1, zoomX2, zoomX3, zoomX4, zoomX5, zoomExitY, zoomFamilyY, zoomSpaceX, zoomFamilyX1, zoomFamilyX2, zoomFamilyX3, zoomFamilyX4, zoomSpaceY1, zoomSpaceY2, zoomSpaceY3;
+var zoomX1, zoomX2, zoomX3, zoomX4, zoomX5, zoomExitY, zoomFamilyY, zoomSpaceX, zoomFamilyX1, zoomFamilyX2, zoomFamilyX3, zoomFamilyX4, zoomSpaceY1, zoomSpaceY2, zoomSpaceY3;
+
+var displaySpace = 1,
+    displayFamily = 0; // starting space and family
 
 // reset key buttons
 var yPosReset, yPosReset, resetWidth, resetHeight, conversationKeyWidth;
 
 // timeline variables
 var timelineStart, timelineEnd, timelineStartWalkway, timelineStartBluegrass, timelineStartRotunda;
+
+var introMsgButtonXPos, introMsgButtonYPos; // Animation/about button positions
+var intro = true; // Controls opening animation
 
 // animation variables and buttons
 var reveal = 0,
@@ -107,10 +113,10 @@ function setup() {
     else imageFileName = "lowImages/"; // low density displays
     loadBlankDataArrays();
     loadBaseImages();
-    // frameRate(30);
+    frameRate(30);
     positionButtons();
-    displayFamily = 0;
-    displaySpace = 1;
+    font_PlayfairReg = loadFont("PlayfairDisplay-Regular.ttf");
+    textFont(font_PlayfairReg, 18);
 }
 
 // sets drawing canvas, organizes drawing in 2 views (zoom or not zoom), sets animation
@@ -123,9 +129,7 @@ function draw() {
     if (zoomView) {
         drawingSurface = new DrawZoom();
         drawingSurface.draw();
-        fill(125);
-        textSize(18);
-        text("Animation (a)", width / 30, height / 1.075);
+        drawIntroMsgs();
     } else if (!zoomView) {
         drawingSurface = new DrawSmallMultiple();
         drawingSurface.draw();
@@ -137,6 +141,20 @@ function draw() {
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
     positionButtons();
+}
+
+function drawIntroMsgs() {
+    fill(125);
+    textSize(18);
+    noStroke();
+    var a = textWidth("Animation on/off");
+    var b = textWidth("About");
+    var c = textWidth("    ");
+    text("Animation on/off    About", introMsgButtonXPos, introMsgButtonYPos);
+    strokeWeight(1);
+    stroke(0);
+    if (animate) line(introMsgButtonXPos, introMsgButtonYPos + 5, introMsgButtonXPos + a, introMsgButtonYPos + 5);
+    if (welcome) line(introMsgButtonXPos + a + c, introMsgButtonYPos + 5, introMsgButtonXPos + a + b + c, introMsgButtonYPos + 5);
 }
 
 function setWelcomeScreen() {

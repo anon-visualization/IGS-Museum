@@ -13,7 +13,6 @@
         // load conversation length array
         for (var i = 0; i < 106; i++) {
             mapConversation.push(noData);
-
         }
     }
 
@@ -79,8 +78,10 @@
         baseGrid = loadImage(imageFileName + "baseGrid.png");
         baseGrid_2 = loadImage(imageFileName + "baseGrid_2.png");
         baseGrid_3 = loadImage(imageFileName + "baseGrid_3.png");
-        grid_Walkway = loadImage(imageFileName + "grid_Walkway.png");
+        welcomeScreen = loadImage(imageFileName + "welcomeScreen.png");
         grid_Bluegrass = loadImage(imageFileName + "grid_Bluegrass.png");
+        // load above first
+        grid_Walkway = loadImage(imageFileName + "grid_Walkway.png");
         grid_Rotunda = loadImage(imageFileName + "grid_Rotunda.png");
         gridZoom = loadImage(imageFileName + "gridZoom.png");
         plan_Walkway = loadImage(imageFileName + "plan_Walkway.png");
@@ -110,7 +111,6 @@
         grayScale_20 = loadImage(imageFileName + "grayScale_20.png");
         grayScale_21 = loadImage(imageFileName + "grayScale_21.png");
         grayScale_22 = loadImage(imageFileName + "grayScale_22.png");
-        welcomeScreen = loadImage(imageFileName + "welcomeScreen.png");
     }
 
     function positionButtons() {
@@ -175,4 +175,7 @@
         timelineStartWalkway = width / 2.45;
         timelineStartBluegrass = width / 2.83;
         timelineStartRotunda = width / 1.81;
+        // Intro msg buttons
+        introMsgButtonXPos = width / 30;
+        introMsgButtonYPos = height / 1.075;
     }

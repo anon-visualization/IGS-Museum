@@ -174,7 +174,7 @@ function DrawZoom() {
 
             //Either load data or play conversation
             if ((distance < conversationButtonSizeZoom / 2)) {
-                if (mapConversation[i] !== -1) { // if data has been loaded
+                if (mapConversation[i] !== -1 && mapConversation[i] !== undefined && mapConversation[i] !== null) { // if data has been loaded
                     locked = true;
                     image(mapConversation[i].conversationBoxZoom, 0, 0, width, height); // Different than !zoom display
                     if (i == conversationAudioNumber) {
@@ -199,15 +199,19 @@ function DrawZoom() {
                 conversationButtonSpacing += conversationButtonGapZoom;
             }
         }
+        fill(0);
+        noStroke();
+        textSize(18);
+        text("   Hover over buttons to read & listen to conversation", conversationButtonX + conversationButtonSpacing, conversationButtonY + conversationButtonSizeZoom / 2); // draw convo msg
     }
 
     // draws text when called (e.g. mouse is over conversationButton)
     function drawIndividualConversationText(lines) {
         var textLength, i, textBoxTop, textXPos, talkBubbleLine;
         var textBoxWidth = 500; // sets text box width
-        var textLeading = 20; // sets spacing for conversation text
+        var textLeading = 23; // sets spacing for conversation text
         var textSpacing = 5; // sets spacing for conversation box
-        textSize(15);
+        textSize(17);
         textLength = mapConversation[lines].conversationText.length;
 
         textXpos = mouseX;
