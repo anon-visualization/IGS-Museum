@@ -109,7 +109,7 @@ function talkCurationZoom(walkway, bluegrass, rotunda) {
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
-    if (displayDensity() >= 1) imageFileName = "images/"; // set image resolution depending on displayDensity
+    if (windowWidth > 1440) imageFileName = "images/"; // high density displays
     else imageFileName = "lowImages/"; // low density displays
     loadBlankDataArrays();
     loadBaseImages();
