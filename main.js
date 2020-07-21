@@ -137,6 +137,7 @@ function draw() {
     }
     setUpAnimation();
     // setWelcomeScreen();
+    if (welcome) drawAbout();
 }
 
 function windowResized() {
@@ -158,28 +159,36 @@ function drawIntroMsgs() {
     if (welcome) line(introMsgButtonXPos + a + c, introMsgButtonYPos + 5, introMsgButtonXPos + a + b + c, introMsgButtonYPos + 5);
 }
 
-function setWelcomeScreen() {
-    // Determine fade in/out and send to draw welcome screen scaled to window 
-    if (welcome) {
-        if (welcomeAnimation < 230) welcomeAnimation += 10;
-        drawWelcomeScreen();
-    } else {
-        if (welcomeAnimation > 0) {
-            welcomeAnimation -= 10;
-            drawWelcomeScreen();
-        }
-    }
-}
-
-function drawWelcomeScreen() {
+function drawAbout() {
     imageMode(CENTER);
-    tint(255, welcomeAnimation);
     var imageRatio = welcomeScreen.width / welcomeScreen.height;
     if (windowWidth * displayDensity() > welcomeScreen.width) image(welcomeScreen, width / 2, height / 2, welcomeScreen.width / 2, welcomeScreen.height / 2);
     else image(welcomeScreen, windowWidth / 2, windowHeight / 2, windowWidth / imageRatio, windowHeight / imageRatio);
     imageMode(CORNER);
-    noTint();
 }
+
+// function setWelcomeScreen() {
+//     // Determine fade in/out and send to draw welcome screen scaled to window 
+//     if (welcome) {
+//         if (welcomeAnimation < 230) welcomeAnimation += 10;
+//         drawWelcomeScreen();
+//     } else {
+//         if (welcomeAnimation > 0) {
+//             welcomeAnimation -= 10;
+//             drawWelcomeScreen();
+//         }
+//     }
+// }
+
+// function drawWelcomeScreen() {
+//     imageMode(CENTER);
+//     tint(255, welcomeAnimation);
+//     var imageRatio = welcomeScreen.width / welcomeScreen.height;
+//     if (windowWidth * displayDensity() > welcomeScreen.width) image(welcomeScreen, width / 2, height / 2, welcomeScreen.width / 2, welcomeScreen.height / 2);
+//     else image(welcomeScreen, windowWidth / 2, windowHeight / 2, windowWidth / imageRatio, windowHeight / imageRatio);
+//     imageMode(CORNER);
+//     noTint();
+// }
 
 function loadBlankDataArrays() {
     var noData = -1;
