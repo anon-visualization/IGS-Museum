@@ -20,8 +20,8 @@ var mapMovement = [], // individualLength for all
     mapZoomTalk = [],
     mapZoomCuration = [];
 
-// Base Images
-var baseGrid, baseGrid_2, baseGrid_3, grayScale, allConversationBoxes, grid_Walkway, grid_Bluegrass, grid_Rotunda, plan_Walkway, plan_Bluegrass, plan_Rotunda, gridZoom, conversationBoxes_00, conversationBoxes_01, conversationBoxes_02, conversationBoxes_03, conversationBoxes_10, conversationBoxes_11, conversationBoxes_12, conversationBoxes_13, conversationBoxes_20, conversationBoxes_21, conversationBoxes_22, grayScale_00, grayScale_01, grayScale_02, grayScale_03, grayScale_10, grayScale_11, grayScale_12, grayScale_13, grayScale_20, grayScale_21, grayScale_22;
+// Base image files
+var welcomeScreen, baseGrid, baseGrid_2, baseGrid_3, grayScale, allConversationBoxes, grid_Walkway, grid_Bluegrass, grid_Rotunda, plan_Walkway, plan_Bluegrass, plan_Rotunda, gridZoom, conversationBoxes_00, conversationBoxes_01, conversationBoxes_02, conversationBoxes_03, conversationBoxes_10, conversationBoxes_11, conversationBoxes_12, conversationBoxes_13, conversationBoxes_20, conversationBoxes_21, conversationBoxes_22, grayScale_00, grayScale_01, grayScale_02, grayScale_03, grayScale_10, grayScale_11, grayScale_12, grayScale_13, grayScale_20, grayScale_21, grayScale_22;
 
 // 3 modes
 var movement = true,
@@ -29,6 +29,22 @@ var movement = true,
     curation = false;
 
 // ********* GUI *********
+var font_PlayfairReg; // font
+var conversationAudioNumber = -1; // Constant for preventing audio repeating
+
+// Interface variables
+var locked = false,
+    zoomView = true,
+    grayScaleToggle = true,
+    welcome = true, // Controls welcome message/information on hover
+    intro = true; // Controls opening selection of Blake/Adhir
+
+// Animation variables
+var reveal = 0,
+    fillColor = 255,
+    animate = true,
+    fullScreenTransition = false;
+
 // Button variables
 var conversationButtonSize = 7,
     conversationButtonSizeZoom = 14,
@@ -37,16 +53,6 @@ var conversationButtonSize = 7,
     zoomButtonSize = 50,
     zoomExitButtonSize = 100,
     mapButtonSize = 9;
-
-// Interface variables
-var locked = false,
-    zoomView = true,
-    grayScaleToggle = true;
-
-var conversationAudioNumber = -1; // Constant for preventing audio repeating
-var welcome = true; // Controls welcome message/information on hover
-var welcomeScreen, welcomeAnimation = 0; // Controls fading for welcome screen
-var font_PlayfairReg; // fonts
 
 // Mode button positions
 var yPosMapButton, xPosMapMovementButton, xPosMapTalkButton, xPosMapCurationButton, xPosMapCurationButtonEnd, mapButtonHeight, widthMapMovementButton, widthMapTalkButton, widthMapCurationButton, mapButtonSizeHeight;
@@ -60,6 +66,9 @@ var conversationButtonY, conversationButtonX, yPosWalkway, yPosBluegrass, yPosRo
 // Space, family, zoom button positions
 var zoomX1, zoomX2, zoomX3, zoomX4, zoomX5, zoomExitY, zoomFamilyY, zoomSpaceX, zoomFamilyX1, zoomFamilyX2, zoomFamilyX3, zoomFamilyX4, zoomSpaceY1, zoomSpaceY2, zoomSpaceY3;
 
+// Animation/about button positions
+var introMsgButtonXPos, introMsgButtonYPos;
+
 // Starting values for space, family
 var displaySpace = 1,
     displayFamily = 0;
@@ -69,15 +78,6 @@ var yPosReset, yPosReset, resetWidth, resetHeight, conversationKeyWidth;
 
 // timeline variables
 var timelineStart, timelineEnd, timelineStartWalkway, timelineStartBluegrass, timelineStartRotunda;
-
-var introMsgButtonXPos, introMsgButtonYPos; // Animation/about button positions
-var intro = true; // Controls opening animation
-
-// animation variables and buttons
-var reveal = 0,
-    fillColor = 255,
-    animate = true,
-    fullScreenTransition = false;
 
 // Classes
 function Conversation(convo, box, boxZoom, audio) {
@@ -136,7 +136,6 @@ function draw() {
         drawingSurface.draw();
     }
     setUpAnimation();
-    // setWelcomeScreen();
     if (welcome) drawAbout();
 }
 
@@ -166,29 +165,6 @@ function drawAbout() {
     else image(welcomeScreen, windowWidth / 2, windowHeight / 2, windowWidth / imageRatio, windowHeight / imageRatio);
     imageMode(CORNER);
 }
-
-// function setWelcomeScreen() {
-//     // Determine fade in/out and send to draw welcome screen scaled to window 
-//     if (welcome) {
-//         if (welcomeAnimation < 230) welcomeAnimation += 10;
-//         drawWelcomeScreen();
-//     } else {
-//         if (welcomeAnimation > 0) {
-//             welcomeAnimation -= 10;
-//             drawWelcomeScreen();
-//         }
-//     }
-// }
-
-// function drawWelcomeScreen() {
-//     imageMode(CENTER);
-//     tint(255, welcomeAnimation);
-//     var imageRatio = welcomeScreen.width / welcomeScreen.height;
-//     if (windowWidth * displayDensity() > welcomeScreen.width) image(welcomeScreen, width / 2, height / 2, welcomeScreen.width / 2, welcomeScreen.height / 2);
-//     else image(welcomeScreen, windowWidth / 2, windowHeight / 2, windowWidth / imageRatio, windowHeight / imageRatio);
-//     imageMode(CORNER);
-//     noTint();
-// }
 
 function loadBlankDataArrays() {
     var noData = -1;
