@@ -208,7 +208,7 @@ function DrawZoom() {
     // draws text when called (e.g. mouse is over conversationButton)
     function drawIndividualConversationText(lines) {
         var textLength, i, textBoxTop, textXPos, talkBubbleLine;
-        var textBoxWidth = 500; // sets text box width
+        var textBoxWidth = 600; // sets text box width
         var textLeading = 23; // sets spacing for conversation text
         var textSpacing = 5; // sets spacing for conversation box
         textSize(17);
