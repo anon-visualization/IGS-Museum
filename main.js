@@ -108,11 +108,14 @@ function talkCurationZoom(walkway, bluegrass, rotunda) {
     this.movementRotunda = rotunda;
 }
 
+function preload() {
+    loadBlankDataArrays();
+}
+
 function setup() {
     createCanvas(windowWidth, windowHeight);
     if (windowWidth > 900) imageFileName = "images/"; // high density displays
     else imageFileName = "lowImages/"; // low density displays
-    loadBlankDataArrays();
     loadBaseImages();
     frameRate(30);
     positionButtons();

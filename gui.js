@@ -18,7 +18,6 @@ function mousePressed() {
         reset();
         overZoomButton();
     }
-    return false;
 }
 
 function overIntroButtons() {
@@ -366,4 +365,3 @@ function transitionReveal() {
         else image(grid_Rotunda, 0, 0, width, height);
     }
 }
-
