@@ -18,6 +18,7 @@ function mousePressed() {
         reset();
         overZoomButton();
     }
+    return false;
 }
 
 function overIntroButtons() {
