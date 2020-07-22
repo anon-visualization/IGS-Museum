@@ -4,7 +4,7 @@ CREDITS/LICENSE INFORMATION: This software is licensed under the GNU General Pub
 IGS software was originally developed by Ben Rydal Shapiro at Vanderbilt University as part of his dissertation titled Interaction Geography & the Learning Sciences. Copyright (C) 2018 Ben Rydal Shapiro, and contributers. To reference or read more about this work please see: https://etd.library.vanderbilt.edu/available/etd-03212018-140140/unrestricted/Shapiro_Dissertation.pdf
 */
 
-// For high Res or low Res screens
+// For high res or low res screens
 var imageFileName;
 
 // Array Lengths
@@ -116,7 +116,7 @@ function setup() {
     loadBaseImages();
     frameRate(30);
     positionButtons();
-    font_PlayfairReg = loadFont("PlayfairDisplay-Regular.ttf");
+    font_PlayfairReg = loadFont("data/PlayfairDisplay-Regular.ttf");
     textFont(font_PlayfairReg, 18);
 }
 
