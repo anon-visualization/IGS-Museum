@@ -1,6 +1,6 @@
 # IGS_Museum
 
-[insert info]
+The interactive data visualization introduces an approach to visualizing people's collaborative interaction called interaction geography in a museum setting. This approach extends and integrates Torsten Hägerstrand’s innovative work on time geography with contemporary work in learning sciences. The visualization shows 4 families' interaction geographies as they visit 3 museum gallery spaces. The visualization works best in the Google Chrome web browser.
 
 CREDITS/LICENSE INFORMATION: This software is licensed under the GNU General Public License Version 2.0. See the GNU General Public License included with this software for more details. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
