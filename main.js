@@ -164,8 +164,7 @@ function drawIntroMsgs() {
 function drawAbout() {
     imageMode(CENTER);
     var imageRatio = welcomeScreen.width / welcomeScreen.height;
-    if (windowWidth * displayDensity() > welcomeScreen.width) image(welcomeScreen, width / 2, height / 2, welcomeScreen.width / 2, welcomeScreen.height / 2);
-    else image(welcomeScreen, windowWidth / 2, windowHeight / 2, windowWidth / imageRatio, windowHeight / imageRatio);
+    image(welcomeScreen, windowWidth / 2, windowHeight / 2, windowWidth / imageRatio, windowHeight / imageRatio);
     imageMode(CORNER);
 }
 
